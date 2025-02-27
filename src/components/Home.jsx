@@ -7,7 +7,11 @@ function Home() {
     return (
         <div>
             <h1>This is the Home page!</h1>
-            <p>{access_token}</p>
+            {!access_token ? (
+                <p>Loading...</p>
+            ) : (
+                <ImageCarousel access_token={access_token} />
+            )}
         </div>
     )
 }

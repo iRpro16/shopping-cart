@@ -8,24 +8,35 @@ function App() {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    fetch(userInfo.token_URL, {
-      method: "post",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: userInfo.clientId,
-        client_secret: userInfo.clientSecret,
-      })
-    })
-    .then(response => response.json())
-    .then(data => setToken(data));
-  }, []);
+    async function fetchToken() {
+      setToken(null); //set to null
 
+      fetch(userInfo.token_URL, {
+        method: "post",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          grant_type: "client_credentials",
+          client_id: userInfo.clientId,
+          client_secret: userInfo.clientSecret,
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (active) setToken(data)
+      });
+    }
+
+    let active = true
+    fetchToken()
+    return () => {
+      active = false;
+    }
+  }, [])
 
   return (
     <>
       <NavBar />
-      <Outlet context={token.access_token}/>
+      <Outlet context={token?.access_token}/>
     </>
   )
 }
