@@ -17,7 +17,15 @@ function ImageCarousel({ access_token }) {
                 "Authorization": `Bearer ${access_token}`
             },
         })
-        .then((response) => response.json())
+        .then((response) => {
+            if (response.status === 429) {
+                const retryAfter = response.headers.get("Retry-After");
+                console.warn(`Rate limited. Retry after ${retryAfter} seconds`);
+                console.log(response.headers)
+            } else {
+                return response.json();
+            }
+        })
         .then((data) => setData(data.albums))
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
