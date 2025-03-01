@@ -3,13 +3,14 @@ import albumGenres from "../api/shopData";
 import { useOutletContext } from "react-router-dom";
 import concatStringIDS from "../utils/concatStrings";
 import { useEffect, useState } from "react";
+import Vinyl from "./Vinyl";
 import "../styles/ShopDisplays.css";
 
 function ShopDisplays() {
     const access_token = useOutletContext();
     const { genre } = useParams();
     const genreObject = albumGenres.find(album => album.genre === genre);
-    const albumIDS = concatStringIDS(genreObject.spotifyIDs);
+    let albumIDS = concatStringIDS(genreObject.spotifyIDs);
     const [albums, setAlbums] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -45,7 +46,7 @@ function ShopDisplays() {
         <div className="album-genre-display">
             {albums?.map(album => (
                 <div key={album.id} className="display-albums-genre">
-                    <img src={album.images[0].url}/>
+                    <Vinyl URL={album.images[0].url} albumName={album.name}/>
                 </div>
             ))}
         </div>

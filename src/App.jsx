@@ -6,7 +6,6 @@ import './App.css';
 
 function App() {
   const [token, setToken] = useState(null);
-  const [refreshToken, setRefreshToken] = useState("");
 
   useEffect(() => {
     async function fetchToken() {
@@ -25,44 +24,22 @@ function App() {
       .then(data => {
         if (active) {
           setToken(data);
-          setRefreshToken(data.refresh_token);
         }
       })
       .catch(error => {
         if (error.status === 403) {
-          fetchRefreshToken();
+          console.warn("Refresh token expired");
         }
       })
     }
 
-    async function fetchRefreshToken() {
-      const url = "https://accounts.spotify.com/api/token";
-
-      const payload = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-          grant_type: 'refresh_token',
-          refresh_token: refreshToken,
-          client_id: userInfo.clientId
-        }),
-      }
-      const body = await fetch(url, payload);
-      const response = await body.json();
-      setToken(response.access_token);
-      if (response.refreshToken) {
-        setRefreshToken(response.refresh_token);
-      }
-    }
 
     let active = true;
     fetchToken();
     return () => {
       active = false;
     }
-  }, [refreshToken])
+  }, []);
 
   return (
     <>
