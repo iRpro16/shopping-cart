@@ -5,7 +5,7 @@ import concatStringIDS from "../utils/concatStrings";
 import Vinyl from "./Vinyl";
 
 function DisplayAll() {
-    const access_token = useOutletContext();
+    const {token, vinyls, setVinyls} = useOutletContext();
     const [albums, setAlbums] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ function DisplayAll() {
         fetch(`https://api.spotify.com/v1/albums?ids=${albumIDS}`, {
             method: "get",
             headers: {
-                "Authorization": `Bearer ${access_token}`
+                "Authorization": `Bearer ${token}`
             },
         })
         .then((response) => {
@@ -30,7 +30,7 @@ function DisplayAll() {
         .then((data) => setAlbums(data.albums))
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
-    }, [access_token, albumIDS]);
+    }, [token, albumIDS]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>A network error was encountered</p>;
@@ -39,7 +39,11 @@ function DisplayAll() {
         <div className="album-genre-display">
             {albums?.map(album => (
                 <div key={album.id} className="display-all-albums">
-                    <Vinyl URL={album.images[0].url} albumName={album.name}/>
+                    <Vinyl 
+                        URL={album.images[0].url} 
+                        albumName={album.name}
+                        cart={vinyls} 
+                        modifyCart={setVinyls}/>
                 </div>
             ))}
         </div>

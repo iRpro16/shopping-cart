@@ -1,11 +1,12 @@
-import NavBar from './components/NavBar';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import NavBar from './components/NavBar';
 import userInfo from './api/data';
 import './App.css';
 
 function App() {
   const [token, setToken] = useState(null);
+  const [vinyls, setVinyls] = useState([]);
 
   useEffect(() => {
     async function fetchToken() {
@@ -23,16 +24,15 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (active) {
-          setToken(data);
+          setToken(data?.access_token);
         }
       })
       .catch(error => {
-        if (error.status === 403) {
+        if (error.status === 401) {
           console.warn("Refresh token expired");
         }
       })
     }
-
 
     let active = true;
     fetchToken();
@@ -44,7 +44,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Outlet context={token?.access_token}/>
+      <Outlet context={{token, vinyls, setVinyls}}/>
     </>
   )
 }

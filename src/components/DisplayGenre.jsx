@@ -7,7 +7,7 @@ import Vinyl from "./Vinyl";
 import "../styles/ShopDisplays.css";
 
 function ShopDisplays() {
-    const access_token = useOutletContext();
+    const {token, vinyls, setVinyls} = useOutletContext();
     const { genre } = useParams();
     const genreObject = albumGenres.find(album => album.genre === genre);
     let albumIDS = concatStringIDS(genreObject.spotifyIDs);
@@ -22,7 +22,7 @@ function ShopDisplays() {
             fetch(`https://api.spotify.com/v1/albums?ids=${albumIDS}`, {
                 method: "get",
                 headers: {
-                    "Authorization": `Bearer ${access_token}`
+                    "Authorization": `Bearer ${token}`
                 },
             })
             .then((response) => response.json())
@@ -37,7 +37,7 @@ function ShopDisplays() {
         return () => {
             active = false;
         }
-    }, [access_token, albumIDS])
+    }, [token, albumIDS])
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>A network error was encountered</p>;
@@ -46,7 +46,11 @@ function ShopDisplays() {
         <div className="album-genre-display">
             {albums?.map(album => (
                 <div key={album.id} className="display-albums-genre">
-                    <Vinyl URL={album.images[0].url} albumName={album.name}/>
+                    <Vinyl 
+                        URL={album.images[0].url} 
+                        albumName={album.name} 
+                        cart={vinyls}
+                        modifyCart={setVinyls}/>
                 </div>
             ))}
         </div>

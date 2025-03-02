@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
 function Shop() {
-    const access_token = useOutletContext();
+    const {token, vinyls, setVinyls} = useOutletContext();
     
     return (
         <>
@@ -15,7 +15,7 @@ function Shop() {
                     <li key={album.id}><Link to={album.genre}>{album.genre}</Link></li>
                 )
             })}
-            <Outlet context={access_token}/>
+            <Outlet context={{token, vinyls, setVinyls}}/>
         </>
     );
 };
