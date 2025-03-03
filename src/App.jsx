@@ -1,18 +1,27 @@
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import concatStringIDS from './utils/concatStrings';
+import createUpdatedArray from './utils/createUpdatedArray';
+import allAlbums from './api/allAlbumsData';
 import NavBar from './components/NavBar';
-import userInfo from './api/data';
+import userInfo from './api/userInfo';
 import './App.css';
 
 function App() {
-  const [token, setToken] = useState(null);
   const [vinyls, setVinyls] = useState([]);
+  const [albums, setAlbums] = useState(null);
+  const token_URL = "https://accounts.spotify.com/api/token";
+  const spotify_URL = "https://api.spotify.com/v1/albums?ids=";
+  const albumIDSArray = allAlbums.map(album => album.albumID);
+  const albumIDS = concatStringIDS(albumIDSArray);
 
   useEffect(() => {
-    async function fetchToken() {
-      setToken(null); //set to null
+    fetchToken();
+  }, []);
 
-      fetch(userInfo.token_URL, {
+  const fetchToken = async () => {
+    try {
+      const response = await fetch(token_URL, {
         method: "post",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
@@ -21,30 +30,31 @@ function App() {
           client_secret: userInfo.clientSecret,
         })
       })
-      .then(response => response.json())
-      .then(data => {
-        if (active) {
-          setToken(data?.access_token);
-        }
-      })
-      .catch(error => {
-        if (error.status === 401) {
-          console.warn("Refresh token expired");
-        }
-      })
-    }
+      const data = await response.json();
+      fetchAlbumData(data?.access_token);
+    } catch (error) {
+      console.error('Error fetching token:', error);
+    } 
+  }
 
-    let active = true;
-    fetchToken();
-    return () => {
-      active = false;
+  const fetchAlbumData = async (token) => {
+    try {
+      const response = await fetch(spotify_URL + albumIDS, {
+        method: "get",
+        headers: {"Authorization": `Bearer ${token}`}
+      });
+      const data = await response.json();
+      const updatedAlbumsArray = createUpdatedArray(data?.albums, allAlbums);
+      setAlbums(updatedAlbumsArray);
+    } catch (error) {
+      console.error('Error fetching data', error);
     }
-  }, []);
-
+  }
+  
   return (
     <>
       <NavBar />
-      <Outlet context={{token, vinyls, setVinyls}}/>
+      <Outlet context={{albums, vinyls, setVinyls}}/>
     </>
   )
 }

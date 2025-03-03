@@ -2,15 +2,15 @@ import ImageCarousel from "./ImageCarousel";
 import { useOutletContext } from "react-router-dom";
 
 function Home() {
-    const {token} = useOutletContext();
+    const {albums} = useOutletContext();
 
     return (
         <div>
             <h1>This is the Home page!</h1>
-            {!token ? (
+            {!albums ? (
                 <p>Loading...</p>
             ) : (
-                <ImageCarousel access_token={token} />
+                <ImageCarousel albums={albums} />
             )}
         </div>
     )
