@@ -3,7 +3,7 @@ import Vinyl from "./Vinyl";
 import "../styles/DisplayAll.css"
 
 function DisplayAll() {
-    const {albums, vinyls, setVinyls} = useOutletContext();
+    const {albums, cartItems, setCartItems} = useOutletContext();
 
     return (
         <div className="album-genre-display">
@@ -12,8 +12,8 @@ function DisplayAll() {
                     <Vinyl 
                         URL={album.url} 
                         albumName={album.name}
-                        cart={vinyls} 
-                        modifyCart={setVinyls}/>
+                        cart={cartItems} 
+                        modifyCart={setCartItems}/>
                 </div>
             ))}
         </div>

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 
 function Shop() {
-    const {albums, vinyls, setVinyls} = useOutletContext();
+    const {albums, cartItems, setCartItems} = useOutletContext();
     const albumGenres = ["rap", "r&b", "latin", "pop"];
     
     return (
@@ -15,7 +15,7 @@ function Shop() {
                     <li key={crypto.randomUUID()}><Link to={genre}>{genre}</Link></li>
                 )
             })}
-            <Outlet context={{albums, vinyls, setVinyls}}/>
+            <Outlet context={{albums, cartItems, setCartItems}}/>
         </>
     );
 };

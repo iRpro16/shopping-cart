@@ -4,7 +4,7 @@ import Vinyl from "./Vinyl";
 import "../styles/DisplayGenre.css";
 
 function DisplayGenre() {
-    const {albums, vinyls, setVinyls} = useOutletContext();
+    const {albums, cartItems, setCartItems} = useOutletContext();
     const { genre } = useParams();
     const albumGenre = albums.filter(album => album.genre === genre);
 
@@ -15,8 +15,8 @@ function DisplayGenre() {
                     <Vinyl 
                         URL={album.url} 
                         albumName={album.name} 
-                        cart={vinyls}
-                        modifyCart={setVinyls}/>
+                        cart={cartItems}
+                        modifyCart={setCartItems}/>
                 </div>
             ))}
         </div>

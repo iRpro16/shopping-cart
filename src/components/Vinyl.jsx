@@ -4,11 +4,11 @@ import "../styles/Vinyl.css";
 
 function Vinyl({ URL, albumName, cart, modifyCart }) {
     const [quantity, setQuantity] = useState(1);
-    const albumID = allAlbums.find(album => album.name === albumName).albumID;
+    const albumURL = allAlbums.find(album => album.name === albumName).url;
     const albumObj = {
         id: crypto.randomUUID(),
         name: albumName,
-        albumID: albumID,
+        url: albumURL,
         quantity: quantity,
     }
 

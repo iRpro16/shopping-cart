@@ -8,7 +8,7 @@ import userInfo from './api/userInfo';
 import './App.css';
 
 function App() {
-  const [vinyls, setVinyls] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [albums, setAlbums] = useState(null);
   const token_URL = "https://accounts.spotify.com/api/token";
   const spotify_URL = "https://api.spotify.com/v1/albums?ids=";
@@ -17,6 +17,7 @@ function App() {
 
   useEffect(() => {
     fetchToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchToken = async () => {
@@ -54,7 +55,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Outlet context={{albums, vinyls, setVinyls}}/>
+      <Outlet context={{albums, cartItems, setCartItems}}/>
     </>
   )
 }
