@@ -1,7 +1,13 @@
 import { useOutletContext } from "react-router-dom";
+import { Trash } from "lucide-react";
 
 function Cart() {
-    const {cartItems} = useOutletContext();
+    const {cartItems, setCartItems} = useOutletContext();
+
+    const handleDelete = (albumName) => {
+        const updatedCart = cartItems.filter(item => item.name !== albumName);
+        setCartItems(updatedCart);
+    }
 
     return (
         <>
@@ -9,8 +15,9 @@ function Cart() {
             {cartItems.map(item => (
                 <div key={item.id} className="checked-out-item">
                     <img src={item.url}/>
-                    <p>Price:{25.99 * item.quantity}</p>
+                    <p>Price:{item.price * item.quantity}</p>
                     <p>Quantity{item.quantity}</p>
+                    <Trash onClick={() => handleDelete(item.name)}/>
                 </div>
             ))}
         </>
