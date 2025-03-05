@@ -7,7 +7,7 @@ function Shop() {
     const albumGenres = ["rap", "r&b", "latin", "pop"];
     
     return (
-        <>
+        <div className="shop-component">
             <h1>This is the Shop page!</h1>
             <li><Link to="/shop">all</Link></li>
             {albumGenres.map(genre => {
@@ -15,8 +15,12 @@ function Shop() {
                     <li key={crypto.randomUUID()}><Link to={genre}>{genre}</Link></li>
                 )
             })}
-            <Outlet context={{albums, cartItems, setCartItems}}/>
-        </>
+            {albums === null || albums.length == 0 ? (
+                <p>There has been a connection error</p>
+            ) : (
+                <Outlet context={{albums, cartItems, setCartItems}}/>
+            )}
+        </div>
     );
 };
 

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import allAlbums from "../api/allAlbumsData";
+import PropTypes from "prop-types";
 import "../styles/Vinyl.css";
 
 function Vinyl({ URL, albumName, cart, modifyCart }) {
     const [quantity, setQuantity] = useState(1);
+    const [add, setAdd] = useState("Add to cart");
     const albumURL = allAlbums.find(album => album.name === albumName).url;
     const price = allAlbums.find(album => album.name === albumName).price;
     const albumObj = {
@@ -26,6 +28,7 @@ function Vinyl({ URL, albumName, cart, modifyCart }) {
         const albumInCart = cart.find(album => album.name === albumObj.name);
         const newCart = [...cart, albumObj];
         const currentCart = [...cart];
+        setAdd("Added ✓");
 
         if (!albumInCart) {
             modifyCart(newCart);
@@ -42,7 +45,7 @@ function Vinyl({ URL, albumName, cart, modifyCart }) {
             <img src={URL}/>
             <div className="album-price">
                 <p>{albumName}</p>
-                <p>{price}</p>
+                <p>${price}</p>
             </div>
             <div className="quantity">
                 <p>Quantity: </p>
@@ -52,9 +55,17 @@ function Vinyl({ URL, albumName, cart, modifyCart }) {
                     <button onClick={handleAddQuantityClick}>+</button>
                 </div>
             </div>
-            <button onClick={handleAddToCart}>Add to cart</button>
+            <button onClick={handleAddToCart}>{add}</button>
         </div>
     )
 }
 
 export default Vinyl;
+
+// Vinyl component PropTypes
+Vinyl.propTypes = {
+    URL: PropTypes.string.isRequired,
+    albumName: PropTypes.string.isRequired,
+    cart: PropTypes.array.isRequired,
+    modifyCart: PropTypes.func.isRequired
+}

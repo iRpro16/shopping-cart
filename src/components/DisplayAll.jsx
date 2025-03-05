@@ -13,7 +13,8 @@ function DisplayAll() {
                         URL={album.url} 
                         albumName={album.name}
                         cart={cartItems} 
-                        modifyCart={setCartItems}/>
+                        modifyCart={setCartItems}
+                    />
                 </div>
             ))}
         </div>

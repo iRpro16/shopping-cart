@@ -14,6 +14,7 @@ function App() {
   const spotify_URL = "https://api.spotify.com/v1/albums?ids=";
   const albumIDSArray = allAlbums.map(album => album.albumID);
   const albumIDS = concatStringIDS(albumIDSArray);
+  const numberItems = cartItems ? cartItems.reduce((n, {quantity}) => n + quantity, 0) : 0;
 
   useEffect(() => {
     fetchToken();
@@ -54,7 +55,7 @@ function App() {
   
   return (
     <>
-      <NavBar />
+      <NavBar numberItems={numberItems}/>
       <Outlet context={{albums, cartItems, setCartItems}}/>
     </>
   )

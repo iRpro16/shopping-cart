@@ -7,7 +7,7 @@ function Home() {
     return (
         <div>
             <h1>This is the Home page!</h1>
-            {!albums ? (
+            {albums === null || albums.length == 0 ? (
                 <p>Loading...</p>
             ) : (
                 <ImageCarousel albums={albums} />
