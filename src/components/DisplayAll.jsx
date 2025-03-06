@@ -6,18 +6,21 @@ function DisplayAll() {
     const {albums, cartItems, setCartItems} = useOutletContext();
 
     return (
-        <div className="album-genre-display">
-            {albums?.map(album => (
-                <div key={album.id} className="display-all-albums">
-                    <Vinyl 
-                        URL={album.url} 
-                        albumName={album.name}
-                        cart={cartItems} 
-                        modifyCart={setCartItems}
-                    />
-                </div>
-            ))}
-        </div>
+        <>
+            <h3>Browse our selection!</h3>
+            <div className="album-all-display">
+                {albums?.map(album => (
+                    <div key={album.id} className="album-card">
+                        <Vinyl 
+                            URL={album.url} 
+                            albumName={album.name}
+                            cart={cartItems} 
+                            modifyCart={setCartItems}
+                        />
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }
 

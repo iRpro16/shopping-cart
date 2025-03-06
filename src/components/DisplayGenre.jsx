@@ -9,18 +9,21 @@ function DisplayGenre() {
     const albumGenre = albums.filter(album => album.genre === genre);
 
     return (
-        <div className="display-albums-genre">
-            {albumGenre?.map(album => (
-                <div key={album.id} className="album-display-container">
-                    <Vinyl 
-                        URL={album.url} 
-                        albumName={album.name} 
-                        cart={cartItems}
-                        modifyCart={setCartItems}
-                    />
-                </div>
-            ))}
-        </div>
+        <>
+            <h3>{genre}</h3>
+            <div className="display-albums-genre">
+                {albumGenre?.map(album => (
+                    <div key={album.id} className="album-card">
+                        <Vinyl 
+                            URL={album.url} 
+                            albumName={album.name} 
+                            cart={cartItems}
+                            modifyCart={setCartItems}
+                        />
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }
 

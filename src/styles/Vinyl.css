@@ -1,15 +1,47 @@
+.vinyl-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .vinyl-item > img {
     height: 250px;
     width: 250px;
 }
 
+.album-price {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+}
+
 .quantity {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    width: 250px;
 }
 
 .quantity > div {
     display: flex;
     justify-content: space-between;
-    width: 80px;
+    width: 100px;
+    background-color: #cad2c5;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+.plus-btn, .minus-btn {
+    background-color: #cad2c5;
+    border: none;
+    cursor: pointer;
+}
+
+.minus-btn {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.plus-btn {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }

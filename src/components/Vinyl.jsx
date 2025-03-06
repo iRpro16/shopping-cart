@@ -44,18 +44,18 @@ function Vinyl({ URL, albumName, cart, modifyCart, allAlbums= allAlbumsData }) {
         <div className="vinyl-item">
             <img src={URL}/>
             <div className="album-price">
-                <p>{albumName}</p>
+                <p>{albumName}:</p>
                 <p>${price}</p>
             </div>
             <div className="quantity">
                 <p>Quantity: </p>
                 <div>
-                    <button onClick={handleRemoveQuantityClick}>-</button>
+                    <button onClick={handleRemoveQuantityClick} className="minus-btn">-</button>
                     <p>{quantity}</p>
-                    <button onClick={handleAddQuantityClick}>+</button>
+                    <button onClick={handleAddQuantityClick} className="plus-btn">+</button>
                 </div>
             </div>
-            <button onClick={handleAddToCart}>{add}</button>
+            <button onClick={handleAddToCart} className="add-cart-btn">{add}</button>
         </div>
     )
 }

@@ -1,0 +1,5 @@
+.display-albums-genre {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(2, 1fr);
+}

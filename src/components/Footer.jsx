@@ -42,7 +42,7 @@ function Footer() {
                         <p>Drop your email below to get update, promotions, coupons, and more!</p>
                         <div>
                             <input placeholder="Enter your email"/>
-                            <button>→</button>
+                            <button className="email-btn">→</button>
                         </div>
                     </div>
                 </div>

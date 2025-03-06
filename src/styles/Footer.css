@@ -54,7 +54,7 @@ input:focus {
     border: 2px dotted white;
 }
 
-button {
+.email-btn {
     height: 36px;
     background-color: white;
     color: black;
