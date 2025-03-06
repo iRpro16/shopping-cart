@@ -1,9 +1,9 @@
 import { useState } from "react";
-import allAlbums from "../api/allAlbumsData";
+import allAlbumsData from "../api/allAlbumsData";
 import PropTypes from "prop-types";
 import "../styles/Vinyl.css";
 
-function Vinyl({ URL, albumName, cart, modifyCart }) {
+function Vinyl({ URL, albumName, cart, modifyCart, allAlbums= allAlbumsData }) {
     const [quantity, setQuantity] = useState(1);
     const [add, setAdd] = useState("Add to cart");
     const albumURL = allAlbums.find(album => album.name === albumName).url;

@@ -20,7 +20,7 @@ function Cart() {
                         <img src={item.url}/>
                         <p>Price: ${item.price * item.quantity}</p>
                         <p>Quantity: {item.quantity}</p>
-                        <Trash onClick={() => handleDelete(item.name)}/>
+                        <button onClick={() => handleDelete(item.name)}><Trash/></button>
                     </div>
                 ))
             )}

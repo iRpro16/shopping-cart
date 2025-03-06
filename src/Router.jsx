@@ -1,6 +1,7 @@
 import DisplayGenre from './components/DisplayGenre.jsx';
 import DisplayAll from './components/DisplayAll.jsx';
 import { createBrowserRouter } from 'react-router-dom';
+import ErrorPage from './components/ErrorPage.jsx';
 import Home from './components/Home.jsx';
 import Shop from './components/Shop.jsx';
 import Cart from './components/Cart.jsx';
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       { path: "cart", element: <Cart /> },
