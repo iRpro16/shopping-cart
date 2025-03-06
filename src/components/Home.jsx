@@ -1,4 +1,5 @@
 import ImageCarousel from "./ImageCarousel";
+import Footer from "./Footer";
 import { useOutletContext } from "react-router-dom";
 import "../styles/Home.css"
 
@@ -7,6 +8,7 @@ function Home() {
 
     return (
         <>
+            <HomeDescription />
             <div className="home-component">
                 <h1>Check out our hottest sellers!</h1>
                 {albums === null || albums.length == 0 ? (
@@ -15,7 +17,7 @@ function Home() {
                     <ImageCarousel albums={albums}/>
                 )}
             </div>
-            <HomeDescription />
+            <Footer />
         </>
     )
 }
