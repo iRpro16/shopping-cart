@@ -1,4 +1,7 @@
 .embla {
+    position: relative; /* Essential for Embla functionality */
+    width: 100%;
+    margin: 0 auto;
     overflow: hidden;
 }
 
@@ -9,9 +12,16 @@
 .embla_slide {
     flex: 0 0 100%;
     min-width: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .embla_slide > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     height: 400px;
     width: 400px;
+    box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
 }

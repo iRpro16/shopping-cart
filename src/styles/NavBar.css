@@ -1,3 +1,35 @@
 .nav-bar {
     display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(177, 177, 177);
+    position: fixed;
+    width: 100vw;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.store-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-links {
+    display: flex;
+    padding: 12px;
+    gap: 25px;
+    list-style: none;
+    background-color: #cad2c5;
+    border-radius: 10px;
+}
+
+.page-links > li:hover{
+    scale: 1.1;
+}
+
+#vinyl-svg {
+    height: 30px;
+    width: auto;
 }

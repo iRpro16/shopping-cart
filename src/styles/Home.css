@@ -1,0 +1,25 @@
+.home-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 160px;
+    width: 1000px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.home-description {
+    display: flex;
+    width: 1000px;
+    margin-top: 100px;
+    background-color:  #cad2c5;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.home-description > p {
+    font-size: 1.4em;
+}
