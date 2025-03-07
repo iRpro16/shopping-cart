@@ -2,3 +2,8 @@
     height: 300px;
     width: 300px;
 }
+
+.empty-cart > div {
+    display: flex;
+    justify-content: center;
+}

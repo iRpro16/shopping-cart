@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { useOutletContext } from "react-router-dom";
+import React from "react";
 import "../styles/Shop.css";
 
 function Shop() {
@@ -11,27 +12,17 @@ function Shop() {
     return (
         <>
             <div className="shop-component">
-                <div className="all-links">
-                    <li>
-                        <Link 
-                            to="/shop" 
-                            style={{ textDecoration: "none" }}
-                        >all</Link>
-                    </li>
-                    {albumGenres.map(genre => {
-                        return (
-                            <>
-                                /<li 
-                                    key={crypto.randomUUID()}>
-                                    <Link 
-                                        to={genre} 
-                                        style={{ textDecoration: "none" }}
-                                    >{genre}</Link>
-                                </li>
-                            </>
-                        )
-                    })}
-                </div>
+            <div className="all-links">
+                <li>
+                    <Link to="/shop" style={{ textDecoration: "none", color: "black" }}>all</Link>
+                </li>
+                {albumGenres.map((genre) => (
+                    <React.Fragment key={crypto.randomUUID()}>
+                        {" / "}
+                        <Link to={genre} style={{ textDecoration: "none", color: "black" }}>{genre}</Link>
+                    </React.Fragment>
+                ))}
+            </div>
                 {albums === null || albums.length == 0 ? (
                     <p>There has been a connection error</p>
                 ) : (

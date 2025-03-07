@@ -1,0 +1,133 @@
+.cart-component {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    flex: 1;
+    width: 1000px;
+    animation: slide 1s;
+}
+
+.cart-content {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.checked-out-items {
+    display: flex;
+    gap: 20px;
+    width: 50%;
+    flex-direction: column;
+}
+
+.checked-out-items > h3 {
+    margin-left: 20px;
+    text-align: center;
+}
+
+.checked-out-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid black;
+    gap: 30px;
+    width: 400px;
+}
+
+.checked-out-item > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.checked-out-item > img {
+    height: 100px;
+    width: 100px;
+}
+
+.checked-out-item > button {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.checked-out-item > button:hover {
+    cursor: pointer;
+    border: 2px solid red;
+    color: red;
+}
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: none;
+    max-height: 500px;
+    background-color: #cad2c5;
+    color: white;
+    padding: 20px;
+    gap: 30px;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.order-summary > div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-summary > div > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-summary > div > div > p {
+    font-size: 1.2em;
+}
+
+.order-summary > h2 {
+    border-bottom: 2px solid white;
+}
+
+.order-summary > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+}
+
+.checkout-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid white;
+}
+
+.checkout-cont > button {
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+.checkout-cont > button:hover {
+    cursor: pointer;
+    border: none;
+}
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(-100vw);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

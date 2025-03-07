@@ -13,7 +13,7 @@ function Vinyl({ URL, albumName, cart, modifyCart, allAlbums= allAlbumsData }) {
         name: albumName,
         url: albumURL,
         quantity: quantity,
-        price: price,
+        price: price * quantity,
     }
 
     const handleAddQuantityClick = () => {
@@ -33,7 +33,12 @@ function Vinyl({ URL, albumName, cart, modifyCart, allAlbums= allAlbumsData }) {
         if (!albumInCart) {
             modifyCart(newCart);
         } else {
-            const newAlbumObj = { ...albumInCart, quantity: albumInCart.quantity + quantity };
+            const newPrice = (albumInCart.quantity + quantity) * price;
+            const newAlbumObj = { 
+                ...albumInCart, 
+                quantity: albumInCart.quantity + quantity,
+                price: newPrice
+            };
             const target = currentCart.find(e => e.name === albumName);
             Object.assign(target, newAlbumObj);
             modifyCart(currentCart);
