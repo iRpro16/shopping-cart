@@ -5,7 +5,7 @@ function NavBar({ numberItems }) {
     return (
         <div className="nav-bar">
             <div className="store-header">
-                <img src="./public/vinyl.png" id="vinyl-svg"/>
+                <img src="/vinyl.png" id="vinyl-svg"/>
                 <h3>The Vinyl Store</h3>
             </div>
 

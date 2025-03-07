@@ -4,7 +4,7 @@ import "../styles/EmptyCart.css";
 function EmptyCart() {
     return (
         <div className="empty-cart">
-            <img src="public/shopping-cart.png" id="shopping-cart-svg"/>
+            <img src="/shopping-cart.png" id="shopping-cart-svg"/>
             <p>Cart is empty! Fill it up by checking out our vinyls.</p>
             <hr />
             <div><Link to="/shop">Visit our shop</Link></div>
